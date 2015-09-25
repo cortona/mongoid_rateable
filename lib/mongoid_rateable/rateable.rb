@@ -132,12 +132,12 @@ module Mongoid
       end
     end
 
-    def rate_and_save(mark, rater, weight = 1)
+    def rate_and_save(mark, rater, weight = 1, feedback = '')
       case rater
       when Array
-        rater.each{|rater| rate_and_save(mark, rater, weight)}
+        rater.each{|rater| rate_and_save(mark, rater, weight, feedback)}
       else 
-        rate(mark, rater, weight)
+        rate(mark, rater, weight, feedback)
         save
       end
     end
