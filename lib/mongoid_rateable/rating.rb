@@ -4,6 +4,7 @@ class RatingMark
 
   embedded_in :rateable, :polymorphic => true
   field :mark, :type => Integer
+  field :feedback, type: String
   field :rater_class, :type => String
   field :rater_id, :type => BSON::ObjectId
   field :weight, :type => Integer, :default => 1
