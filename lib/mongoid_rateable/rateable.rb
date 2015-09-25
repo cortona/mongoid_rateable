@@ -100,7 +100,7 @@ module Mongoid
       end
     end # class methods
 
-    def rate(mark, rater = nil, weight = 1)
+    def rate(mark, rater = nil, weight = 1, feedback = '')
       case rater
       when Array
         rater.each{|rater| rate(mark, rater, weight)}
@@ -116,7 +116,7 @@ module Mongoid
         unrate_without_rating_update(rater)
         total_mark = mark.to_i*weight.to_i
         self.rates += total_mark
-        self.rating_marks.new(:rater_id => rater.id, :mark => mark, :rater_class => rater.class.to_s, :weight => weight)
+        self.rating_marks.new(:rater_id => rater.id, :mark => mark, :rater_class => rater.class.to_s, :weight => weight, feedback: feedback)
         self.weighted_rate_count += weight
         update_rating
       end
